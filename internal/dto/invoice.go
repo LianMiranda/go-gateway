@@ -25,15 +25,15 @@ type CreateInvoiceInput struct {
 }
 
 type InvoiceOutput struct {
-	ID             string
-	AccountID      string
-	Amount         float64
-	Status         string
-	Description    string
-	PaymentType    string
-	CardLastDigits string
-	CreatedAt      time.Time
-	UpdatedAt      time.Time
+	ID             string  `json:"id"`
+	AccountID      string  `json:"account_id"`
+	Amount         float64 `json:"amount"`
+	Status         string  `json:"status"`
+	Description    string  `json:"description"`
+	PaymentType    string  `json:"payment_type"`
+	CardLastDigits string  `json:"card_last_digits"`
+	CreatedAt      time.Time `json:"created_at"`
+	UpdatedAt      time.Time `json:"updated_at"`
 }
 
 func ToInvoice(input CreateInvoiceInput, accountID string) (*domain.Invoice, error) {
