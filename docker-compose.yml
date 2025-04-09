@@ -1,0 +1,21 @@
+services:
+  db: #Serviço do banco de dados
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    environment: #Variáveis de ambiente
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: gateway
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    healthcheck: #Verifica se o banco de dados está online
+      test: ["CMD-SHELL", "pg_isready -U postgres"] #Comando para verificar se o banco de dados está online
+      interval: 10s #Intervalo de tempo para verificar se o banco de dados está online
+      timeout: 5s #Tempo máximo para verificar se o banco de dados está online
+      retries: 5 #Número de vezes que o comando será executado
+    restart: unless-stopped #Reinicia o serviço se ele cair
+
+volumes:
+  postgres_data:
+
