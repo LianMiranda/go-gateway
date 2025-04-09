@@ -14,18 +14,17 @@ func NewInvoiceRepository(db *sql.DB) *InvoiceRepository {
 	return &InvoiceRepository{db: db}
 }
 
-//Save salva uma fatura no banco de dados
+// Save salva uma fatura no banco de dados
 func (r *InvoiceRepository) Save(invoice *domain.Invoice) error {
 	_, err := r.db.Exec(
-		"INSERT INTO invoices (id, account_id, amount, status, description, payment_type, card_last_digits, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9", 
+		"INSERT INTO invoices (id, account_id, amount, status, description, payment_type, card_last_digits, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)",
 		invoice.ID, invoice.AccountID, invoice.Amount, invoice.Status, invoice.Description, invoice.PaymentType, invoice.CardLastDigits, invoice.CreatedAt, invoice.UpdatedAt)
-		
 	if err != nil {
 		return err
 	}
 
 	return nil
-} 
+}
 
 func (r *InvoiceRepository) FindByID(id string) (*domain.Invoice, error) {
 	var invoice domain.Invoice
@@ -50,7 +49,7 @@ func (r *InvoiceRepository) FindByID(id string) (*domain.Invoice, error) {
 		return nil, domain.ErrInvoiceNotFound
 	}
 
-	if err != nil{
+	if err != nil {
 		return nil, err
 	}
 
@@ -71,9 +70,9 @@ func (r *InvoiceRepository) FindByAccountID(accountID string) ([]*domain.Invoice
 
 	defer rows.Close()
 
-	var invoices  []*domain.Invoice
+	var invoices []*domain.Invoice
 
-	for rows.Next(){
+	for rows.Next() {
 		var invoice domain.Invoice
 
 		err := rows.Scan(
@@ -98,7 +97,6 @@ func (r *InvoiceRepository) FindByAccountID(accountID string) ([]*domain.Invoice
 	return invoices, nil
 }
 
-
 func (r *InvoiceRepository) UpdateStatus(invoice *domain.Invoice) error {
 	rows, err := r.db.Exec(`
 	UPDATE invoices
@@ -115,11 +113,10 @@ func (r *InvoiceRepository) UpdateStatus(invoice *domain.Invoice) error {
 	if err != nil {
 		return err
 	}
-	
+
 	if rowsAffected == 0 {
 		return domain.ErrInvoiceNotFound
 	}
-	
 
 	return nil
 }
