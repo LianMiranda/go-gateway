@@ -43,8 +43,11 @@ func main() {
 	accountRepository := repository.NewAccountRepository(db)
 	accountService := service.NewAccountService(accountRepository)
 
+	invoiceRepository := repository.NewInvoiceRepository(db)
+	invoiceService := service.NewInvoiceService(invoiceRepository, *accountService)
+
 	port := getEnv("PORT", "3000")
-	server := server.NewServer(accountService, port)
+	server := server.NewServer(accountService, invoiceService, port)
 	server.ConfigureRoutes()	
 
 	server.Start()
