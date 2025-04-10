@@ -1,4 +1,3 @@
-```markdown
 # Gateway de Pagamento - API Gateway (Go)
 
 > Microsserviço da API Gateway desenvolvido em Go, parte do projeto Gateway de Pagamento criado durante a Imersão Full Stack & Full Cycle.
