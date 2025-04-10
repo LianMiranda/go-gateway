@@ -14,7 +14,7 @@ Este projeto foi desenvolvido exclusivamente para fins didáticos como parte da 
 
 O **Gateway de Pagamento** é um sistema distribuído composto por:
 
-- **Frontend** em Next.js  (Link)[https://github.com/LianMiranda/FrontEnd-Gateway]
+- **Frontend** em Next.js  [Link](https://github.com/LianMiranda/FrontEnd-Gateway)
 - **API Gateway** em Go (este repositório)  
 - **Sistema de Antifraude** em Nest.js  
 - **Apache Kafka** para comunicação assíncrona  
