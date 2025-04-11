@@ -1,5 +1,5 @@
 ### Variaveis globais
-@baseUrl = http://localhost:3000
+@baseUrl = http://localhost:8001
 
 @apiKey = {{createAccount.response.body.api_key}}
 
@@ -11,9 +11,8 @@ Content-Type: application/json
 
 {
     "name": "John Doe",
-    "email": "john@doe1111.com"
+    "email": "john1212@doe.com"
 }
-
 
 ###Obter dados da conta
 GET {{baseUrl}}/accounts
